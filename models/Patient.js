@@ -6,7 +6,7 @@ const patientSchema = new mongoose.Schema({
   records: [{ type: mongoose.Schema.Types.ObjectId, ref: "Record" }],
 });
 
-const Patient = mongoose.model("Patient", patientSchema);
+const PatientModel = mongoose.model("Patient", patientSchema);
 module.exports = {
-  Patient
+  PatientModel
 };

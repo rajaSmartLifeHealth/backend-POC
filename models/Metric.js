@@ -7,4 +7,8 @@ const metricSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Metric", metricSchema);
+const metricModel = mongoose.model("Metric", metricSchema);
+
+module.exports = {
+  metricModel
+}

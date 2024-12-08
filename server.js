@@ -34,7 +34,7 @@ app.use("/api", authRouter);
 app.use("/api/categories", auth, categoryRoutes);
 app.use("/api/practices", auth, practiceRoutes);
 app.use("/api/records", auth ,recordRoutes);
-app.use("/api/patients", auth ,patientRoutes);
+app.use("/api/patients", auth , patientRoutes);
 app.use("/api/metrics", auth, metricRoutes);
  
 const PORT = process.env.PORT || 5000;

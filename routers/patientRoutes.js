@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 const Practice = require("../models/Practice");
 const express = require('express');
 const Record = require("../models/Record");
-const Patient = require("../models/Patient");
+const {PatientModel} = require("../models/Patient");
 const auth = require("../middleware/authMiddleware");
 const patientRoutes = express.Router();
 
 // Get all patients
 patientRoutes.get("/", auth, async (req, res) => {
   try {
-    const patients = await Patient.find().populate("practice records");
+    const patients = await PatientModel.find().populate("practice records");
     res.json(patients);
   } catch (err) {
     res.status(500).send("Server Error");
+    console.error(err);
   }
 });
 
 // Add a new patient
-
-patientRoutes.post("/", auth,async (req, res) => {
+patientRoutes.post("/", auth, async (req, res) => {
   try {
     const { name, practice, records } = req.body;
 
@@ -36,7 +36,7 @@ patientRoutes.post("/", auth,async (req, res) => {
     const recordIds = recordDocs.map((record) => record._id);
 
     // Create the patient
-    const newPatient = new Patient({
+    const newPatient = new PatientModel({
       name,
       practice: practiceDoc._id,
       records: recordIds,
@@ -56,7 +56,7 @@ patientRoutes.put("/:id", auth, async (req, res) => {
   const { name, practice, records } = req.body;
 
   try {
-    const patient = await Patient.findByIdAndUpdate(
+    const patient = await PatientModel.findByIdAndUpdate(
       req.params.id,
       { name, practice, records },
       { new: true }
@@ -70,7 +70,7 @@ patientRoutes.put("/:id", auth, async (req, res) => {
 // Delete a patient
 patientRoutes.delete("/:id",  auth,async (req, res) => {
   try {
-    await Patient.findByIdAndDelete(req.params.id);
+    await PatientModel.findByIdAndDelete(req.params.id);
     res.json({ message: "Patient deleted" });
   } catch (err) {
     res.status(500).send("Server Error");
