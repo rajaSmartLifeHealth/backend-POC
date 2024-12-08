@@ -3,9 +3,10 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
+const secret = "5eda7ee2a0f1e180548a5c447157ab26b239572ec27d3c181c5fbd0b101d6f79";
+
 
 const authRouter = express.Router();
-const JWT_SECRET = "your_jwt_secret_key_here"; // Replace with your secret key
 
 // Register Route
 authRouter.post(
@@ -74,7 +75,7 @@ authRouter.post(
       }
 
       // Generate JWT
-      const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
+      const token = jwt.sign({ userId: user._id }, secret, { expiresIn: "1h" });
 
       res.json({ token });
     } catch (err) {
