@@ -9,7 +9,7 @@ const practiceRoutes = require("./routers/practiceRoutes");
 const recordRoutes = require("./routers/recordRoutes");
 const patientRoutes = require("./routers/patientRoutes");
 const metricRoutes = require("./routers/metricRoutes");
-const authRouter = require('./routers/authRouter');
+const {authRouter} = require('./routers/authRouter');
 
 // Connect to MongoDB
 connectDB();

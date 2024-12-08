@@ -3,6 +3,7 @@ const Practice = require("../models/Practice");
 const express = require('express');
 const Record = require("../models/Record");
 const Patient = require("../models/Patient");
+const auth = require("../middleware/authMiddleware");
 const patientRoutes = express.Router();
 
 // Get all patients

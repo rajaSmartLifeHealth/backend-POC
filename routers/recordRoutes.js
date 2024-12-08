@@ -1,5 +1,6 @@
 const express = require("express");
 const Record = require("../models/Record");
+const auth = require("../middleware/authMiddleware");
 const recordRoutes = express.Router();
 
 // Get all records

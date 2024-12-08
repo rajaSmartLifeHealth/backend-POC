@@ -2,6 +2,7 @@ const express = require("express");
 const Metric = require("../models/Metric");
 const metricRoutes = express.Router();
 const {Patient} = require("../models/Patient");
+const auth = require("../middleware/authMiddleware");
 
 // Get all metrics
 metricRoutes.get("/",  auth,async (req, res) => {

@@ -1,5 +1,6 @@
 const express = require("express");
 const Practice = require("../models/Practice");
+const auth = require("../middleware/authMiddleware");
 const practiceRoutes = express.Router();
 
 // Get all practices
