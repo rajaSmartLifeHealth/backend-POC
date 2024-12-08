@@ -17,7 +17,7 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-   origin: ["https://backend-poc-tsp9.onrender.com", "http://localhost:3000"], // Allow this specific origin
+   origin: ["http://localhost:3000"], // Allow this specific origin
    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
    allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
    credentials: true, // Allow cookies if needed
