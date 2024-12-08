@@ -4,7 +4,7 @@ const metricRoutes = express.Router();
 const {Patient} = require("../models/Patient");
 
 // Get all metrics
-metricRoutes.get("/", async (req, res) => {
+metricRoutes.get("/",  auth,async (req, res) => {
   try {
     const metrics = await Metric.find().populate("patient");
     res.json(metrics);
@@ -14,7 +14,7 @@ metricRoutes.get("/", async (req, res) => {
 });
 
 // Add a new metric
-metricRoutes.post("/", async (req, res) => {
+metricRoutes.post("/", auth, async (req, res) => {
   const { name, value, patient } = req.body;
 
   try {
@@ -44,7 +44,7 @@ metricRoutes.post("/", async (req, res) => {
 
 
 // Update a metric
-metricRoutes.put("/:id", async (req, res) => {
+metricRoutes.put("/:id",  auth,async (req, res) => {
   const { name, value, patient } = req.body;
 
   try {
@@ -60,7 +60,7 @@ metricRoutes.put("/:id", async (req, res) => {
 });
 
 // Delete a metric
-metricRoutes.delete("/:id", async (req, res) => {
+metricRoutes.delete("/:id", auth, async (req, res) => {
   try {
     await Metric.findByIdAndDelete(req.params.id);
     res.json({ message: "Metric deleted" });

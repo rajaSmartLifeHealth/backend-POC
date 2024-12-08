@@ -30,11 +30,11 @@ app.get('/', (req,res)=>{
 })
 // Routes
 app.use("/api", require("./routers/authRouter"));
-app.use("/api/categories",  categoryRoutes);
-app.use("/api/practices",  practiceRoutes);
-app.use("/api/records",  recordRoutes);
-app.use("/api/patients", patientRoutes);
-app.use("/api/metrics",  metricRoutes);
+app.use("/api/categories", auth,  categoryRoutes);
+app.use("/api/practices", auth, practiceRoutes);
+app.use("/api/records", auth ,recordRoutes);
+app.use("/api/patients",auth , patientRoutes);
+app.use("/api/metrics", auth, metricRoutes);
 
 const PORT = process.env.PORT || 5000;
 

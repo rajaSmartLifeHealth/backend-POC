@@ -3,7 +3,7 @@ const Record = require("../models/Record");
 const recordRoutes = express.Router();
 
 // Get all records
-recordRoutes.get("/", async (req, res) => {
+recordRoutes.get("/", auth, async (req, res) => {
   try {
     const records = await Record.find();
     res.json(records);
@@ -13,7 +13,7 @@ recordRoutes.get("/", async (req, res) => {
 });
 
 // Add a new record
-recordRoutes.post("/", async (req, res) => {
+recordRoutes.post("/", auth, async (req, res) => {
   const { name, category } = req.body;
 
   try {
@@ -26,7 +26,7 @@ recordRoutes.post("/", async (req, res) => {
 });
 
 // Update a record
-recordRoutes.put("/:id", async (req, res) => {
+recordRoutes.put("/:id", auth, async (req, res) => {
   const { name, category } = req.body;
 
   try {
@@ -42,7 +42,7 @@ recordRoutes.put("/:id", async (req, res) => {
 });
 
 // Delete a record
-recordRoutes.delete("/:id", async (req, res) => {
+recordRoutes.delete("/:id", auth, async (req, res) => {
   try {
     await Record.findByIdAndDelete(req.params.id);
     res.json({ message: "Record deleted" });

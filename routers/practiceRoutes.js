@@ -3,7 +3,7 @@ const Practice = require("../models/Practice");
 const practiceRoutes = express.Router();
 
 // Get all practices
-practiceRoutes.get("/", async (req, res) => {
+practiceRoutes.get("/",  auth,async (req, res) => {
   try {
     const practices = await Practice.find();
     res.json(practices);
@@ -13,7 +13,7 @@ practiceRoutes.get("/", async (req, res) => {
 });
 
 // Add a new practice
-practiceRoutes.post("/", async (req, res) => {
+practiceRoutes.post("/",  auth,async (req, res) => {
   const { name, category } = req.body;
 
   try {
@@ -26,7 +26,7 @@ practiceRoutes.post("/", async (req, res) => {
 });
 
 // Update a practice
-practiceRoutes.put("/:id", async (req, res) => {
+practiceRoutes.put("/:id",  auth,async (req, res) => {
   const { name, category } = req.body;
 
   try {
@@ -42,7 +42,7 @@ practiceRoutes.put("/:id", async (req, res) => {
 });
 
 // Delete a practice
-practiceRoutes.delete("/:id", async (req, res) => {
+practiceRoutes.delete("/:id", auth, async (req, res) => {
   try {
     await Practice.findByIdAndDelete(req.params.id);
     res.json({ message: "Practice deleted" });

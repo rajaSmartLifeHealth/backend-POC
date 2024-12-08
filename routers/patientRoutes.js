@@ -6,7 +6,7 @@ const Patient = require("../models/Patient");
 const patientRoutes = express.Router();
 
 // Get all patients
-patientRoutes.get("/", async (req, res) => {
+patientRoutes.get("/", auth, async (req, res) => {
   try {
     const patients = await Patient.find().populate("practice records");
     res.json(patients);
@@ -17,7 +17,7 @@ patientRoutes.get("/", async (req, res) => {
 
 // Add a new patient
 
-patientRoutes.post("/", async (req, res) => {
+patientRoutes.post("/", auth,async (req, res) => {
   try {
     const { name, practice, records } = req.body;
 
@@ -51,7 +51,7 @@ patientRoutes.post("/", async (req, res) => {
 
 
 // Update a patient
-patientRoutes.put("/:id", async (req, res) => {
+patientRoutes.put("/:id", auth, async (req, res) => {
   const { name, practice, records } = req.body;
 
   try {
@@ -67,7 +67,7 @@ patientRoutes.put("/:id", async (req, res) => {
 });
 
 // Delete a patient
-patientRoutes.delete("/:id", async (req, res) => {
+patientRoutes.delete("/:id",  auth,async (req, res) => {
   try {
     await Patient.findByIdAndDelete(req.params.id);
     res.json({ message: "Patient deleted" });
