@@ -16,9 +16,14 @@ connectDB();
 const app = express();
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
-
+const corsOptions = {
+   origin: "https://backend-poc-tsp9.onrender.com", // Allow this specific origin
+   methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
+   allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+   credentials: true, // Allow cookies if needed
+ };
+ 
+ app.use(cors(corsOptions)); app.use(bodyParser.json());
 app.get('/', (req,res)=>{
    res.send('Hello');
 })
