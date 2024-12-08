@@ -17,13 +17,14 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-   origin: ["http://localhost:3000"], // Allow this specific origin
-   methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-   allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
-   credentials: true, // Allow cookies if needed
- };
- 
- app.use(cors(corsOptions)); app.use(bodyParser.json());
+  origin: "http://localhost:3000", // Allow this specific origin
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow specific headers
+  credentials: true, // Allow cookies if needed
+};
+
+app.use(cors(corsOptions)); app.use(bodyParser.json());
+
 app.get('/', (req,res)=>{
    res.send('Hello');
 })
