@@ -9,6 +9,7 @@ const practiceRoutes = require("./routers/practiceRoutes");
 const recordRoutes = require("./routers/recordRoutes");
 const patientRoutes = require("./routers/patientRoutes");
 const metricRoutes = require("./routers/metricRoutes");
+const authRouter = require('./routers/authRouter');
 
 // Connect to MongoDB
 connectDB();
@@ -29,7 +30,7 @@ app.get('/', (req,res)=>{
    res.send('Hello');
 })
 // Routes
-app.use("/api", require("./routers/authRouter"));
+app.use("/api", authRouter);
 app.use("/api/categories", auth,  categoryRoutes);
 app.use("/api/practices", auth, practiceRoutes);
 app.use("/api/records", auth ,recordRoutes);

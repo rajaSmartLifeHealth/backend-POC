@@ -8,7 +8,7 @@ const router = express.Router();
 const JWT_SECRET = "your_jwt_secret_key_here"; // Replace with your secret key
 
 // Register Route
-router.post(
+authRouter.post(
   "/register",
   [
     body("name").notEmpty().withMessage("Name is required"),
@@ -46,7 +46,7 @@ router.post(
 );
 
 // Login Route
-router.post(
+authRouter.post(
   "/login",
   [
     body("email").isEmail().withMessage("Invalid email"),
@@ -84,4 +84,4 @@ router.post(
   }
 );
 
-module.exports = router;
+module.exports = {authRouter};
