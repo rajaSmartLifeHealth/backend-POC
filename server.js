@@ -29,7 +29,7 @@ app.get('/', (req,res)=>{
    res.send('Hello');
 })
 // Routes
-app.use("/auth", require("./routers/authRouter"));
+app.use("/api/auth", require("./routers/authRouter"));
 app.use("/api/categories", auth,  categoryRoutes);
 app.use("/api/practices", auth,  practiceRoutes);
 app.use("/api/records", auth,  recordRoutes);
