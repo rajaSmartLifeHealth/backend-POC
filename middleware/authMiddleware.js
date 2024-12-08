@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "your_jwt_secret_key_here"; // Replace with your secret key
+require("dotenv").config();
+const JWT_SECRET = process.env.JWT_SECRET; // Replace with your secret key
 
 const auth = (req, res, next) => {
-  const token = req.header("Authorization");
+  const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     return res.status(401).json({ error: "No token, authorization denied" });
   }
