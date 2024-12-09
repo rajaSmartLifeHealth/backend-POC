@@ -28,11 +28,18 @@ categoryRoutes.post("/", auth, async (req, res) => {
 categoryRoutes.delete("/:id", auth, async (req, res) => {
   const { id } = req.params;
   try {
-    const category = new CategoryModel.findByIdAndDelete({ id });
-    res.status(201).json(category);
+    const category = await CategoryModel.findByIdAndDelete(id);
+
+    if (!category) {
+      return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.status(200).json({ message: "Category deleted successfully", category });
   } catch (err) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Server error", details: err.message });
   }
 });
+
+module.exports = categoryRoutes;
 
 module.exports = categoryRoutes;
