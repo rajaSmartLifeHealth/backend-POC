@@ -10,6 +10,7 @@ const recordRoutes = require("./routers/recordRoutes");
 const patientRoutes = require("./routers/patientRoutes");
 const metricRoutes = require("./routers/metricRoutes");
 const {authRouter} = require('./routers/authRouter');
+const {router} = require('./middleware/validate');
 
 // Connect to MongoDB
 connectDB();
@@ -35,6 +36,7 @@ app.get('/', (req,res)=>{
 })
 // Routes
 app.use("/api", authRouter);
+app.use("/api/auth", router);
 app.use("/api/categories", auth, categoryRoutes);
 app.use("/api/practices", auth, practiceRoutes);
 app.use("/api/records", auth ,recordRoutes);
