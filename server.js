@@ -18,7 +18,10 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: "https://smartlife-poc.netlify.app", // Allowed origins
+  origin:  [
+            "https://smartlife-poc.netlify.app",
+            "http://localhost:3000"
+        ], 
   methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
   allowedHeaders: ["Content-Type", "authorization"], // Headers allowed in requests
   credentials: true, // Allow credentials (cookies, auth headers)
