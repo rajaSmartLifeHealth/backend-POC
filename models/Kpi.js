@@ -17,5 +17,5 @@ const kpiSchema = new mongoose.Schema({
 const KPIModel = mongoose.model("KPI", kpiSchema);
 
 module.exports = {
-  KPIModel,
+  KPIModel
 };
